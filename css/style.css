@@ -1,0 +1,114 @@
+* {
+	margin: 0;
+	padding: 0;
+	font-family: 'Nunito', sans-serif;
+}
+
+body {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+	background: url('../img/woodBackground.png');
+	min-width: 1170px;
+}
+
+#maze {
+	width: 22vh;
+	height: 22vh;
+	background: #6a801c;
+	/*border: #6a801c 10px solid;*/
+	position: absolute;
+	top: 12.63vh;
+	margin-left: -6.5vh;
+}
+
+img {
+	height: 100vh;
+	overflow: hidden;
+}
+
+#disclaimer {
+	width: 300px;
+	height: fit-content;
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	background: white;
+	border-radius: 10px;
+	padding: 10px;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+}
+
+#disclaimer h1 {
+	font-weight: 900;
+	margin-bottom: 30px;
+}
+
+#d2 {
+	display: flex;
+}
+
+#d2 div {
+	margin: 10px;
+	flex-direction: column;
+	align-items: center;
+}
+
+#d2 div p {
+	margin-bottom: 10px;
+}
+
+#play {
+	display: flex;
+}
+
+#generate {
+	display: flex;
+}
+
+#redo {
+	display: none;
+}
+
+.svg {
+	width: 30px;
+	cursor: pointer;
+	color: #006eff;
+}
+
+#error {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: white;
+	display: none;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	padding: 20px;
+	border-radius: 10px;
+	border: 2px #c9c9c9 solid;
+}
+
+#error svg {
+	color: red;
+	height: 50px;
+	margin-bottom: 10px;
+}
+
+#error button {
+	padding: 5px 10px;
+	background-color: #006eff;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	font-size: 1.1em;
+	margin-top: 20px;
+}

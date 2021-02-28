@@ -1,0 +1,106 @@
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>NSA maze</title>
+		<link rel="stylesheet" href="./css/style.css" />
+		<script
+			type="text/javascript"
+			src="bower_components/pathfinding/pathfinding-browser.min.js"
+		></script>
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800;900&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="icon" type="image/jpg" href="img/favicon.jpg.png" />
+	</head>
+	<body>
+		<div id="disclaimer">
+			<h1>Maze solver</h1>
+			<div id="d2">
+				<div id="play">
+					<p>Play</p>
+					<svg
+						aria-hidden="true"
+						focusable="false"
+						data-prefix="fas"
+						data-icon="play"
+						class="svg"
+						role="img"
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 448 512"
+						onclick="play()"
+					>
+						<path
+							fill="currentColor"
+							d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z"
+						></path>
+					</svg>
+				</div>
+
+				<div id="generate">
+					<p>Generate new maze</p>
+					<svg
+						aria-hidden="true"
+						focusable="false"
+						data-prefix="fas"
+						data-icon="redo-alt"
+						class="svg"
+						role="img"
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 512 512"
+						onclick="generateMaze()"
+					>
+						<path
+							fill="currentColor"
+							d="M256.455 8c66.269.119 126.437 26.233 170.859 68.685l35.715-35.715C478.149 25.851 504 36.559 504 57.941V192c0 13.255-10.745 24-24 24H345.941c-21.382 0-32.09-25.851-16.971-40.971l41.75-41.75c-30.864-28.899-70.801-44.907-113.23-45.273-92.398-.798-170.283 73.977-169.484 169.442C88.764 348.009 162.184 424 256 424c41.127 0 79.997-14.678 110.629-41.556 4.743-4.161 11.906-3.908 16.368.553l39.662 39.662c4.872 4.872 4.631 12.815-.482 17.433C378.202 479.813 319.926 504 256 504 119.034 504 8.001 392.967 8 256.002 7.999 119.193 119.646 7.755 256.455 8z"
+						></path>
+					</svg>
+				</div>
+
+				<div id="redo">
+					<p>Repeat</p>
+					<svg
+						aria-hidden="true"
+						focusable="false"
+						data-prefix="fas"
+						data-icon="redo-alt"
+						class="svg"
+						role="img"
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 512 512"
+						onclick="play()"
+					>
+						<path
+							fill="currentColor"
+							d="M256.455 8c66.269.119 126.437 26.233 170.859 68.685l35.715-35.715C478.149 25.851 504 36.559 504 57.941V192c0 13.255-10.745 24-24 24H345.941c-21.382 0-32.09-25.851-16.971-40.971l41.75-41.75c-30.864-28.899-70.801-44.907-113.23-45.273-92.398-.798-170.283 73.977-169.484 169.442C88.764 348.009 162.184 424 256 424c41.127 0 79.997-14.678 110.629-41.556 4.743-4.161 11.906-3.908 16.368.553l39.662 39.662c4.872 4.872 4.631 12.815-.482 17.433C378.202 479.813 319.926 504 256 504 119.034 504 8.001 392.967 8 256.002 7.999 119.193 119.646 7.755 256.455 8z"
+						></path>
+					</svg>
+				</div>
+			</div>
+		</div>
+		<canvas id="maze" width="550" height="550"></canvas>
+		<div id="error">
+			<svg
+				aria-hidden="true"
+				focusable="false"
+				data-prefix="fas"
+				data-icon="exclamation"
+				class="svg-inline--fa fa-exclamation fa-w-6"
+				role="img"
+				xmlns="http://www.w3.org/2000/svg"
+				viewBox="0 0 192 512"
+			>
+				<path
+					fill="currentColor"
+					d="M176 432c0 44.112-35.888 80-80 80s-80-35.888-80-80 35.888-80 80-80 80 35.888 80 80zM25.26 25.199l13.6 272C39.499 309.972 50.041 320 62.83 320h66.34c12.789 0 23.331-10.028 23.97-22.801l13.6-272C167.425 11.49 156.496 0 142.77 0H49.23C35.504 0 24.575 11.49 25.26 25.199z"
+				></path>
+			</svg>
+			<p>This maze doesn't have solution!</p>
+			<button onclick="noneSolutionMaze()">Close</button>
+		</div>
+		<img src="./img/gameboyDoneZoom.png" />
+		<script src="./js/script.js"></script>
+	</body>
+</html>
