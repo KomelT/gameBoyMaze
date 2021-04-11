@@ -29,7 +29,12 @@ ctx.beginPath();
 
 //generateMaze();
 
-welcomeScreen()
+Swal.fire({
+	title: "Welcome in a Game Boy maze!",
+	text: "After your Game boy turns on, on the left side will two buttons appear with which you control the Game boy. Also, don't forget to turn on your speakers so you could enjoy original Game boy music. ",
+	icon: 'info',
+	confirmButtonText: 'I understand'
+}).then(() => { welcomeScreen() })
 
 function welcomeScreen() {
 	var audio = new Audio("https://komelt.github.io/gameBoyMaze/sound/gameboy_startup.mp3");
