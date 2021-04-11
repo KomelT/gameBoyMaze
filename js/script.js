@@ -21,6 +21,7 @@ let start = []
 let end = []
 let interval;
 let blockS = 27.3;
+var gameS = new Audio("https://komelt.github.io/gameBoyMaze/sound/nintendo_games.mp3");
 
 var c = document.getElementById('maze');
 var ctx = c.getContext('2d');
@@ -59,11 +60,42 @@ function welcomeScreen() {
 }
 
 function theEnd() {
+	var theEnd = new Audio("https://komelt.github.io/gameBoyMaze/sound/the_end.mp3");
+	theEnd.play();
+	ctx.clearRect(0, 0, 550, 550);
+
+	var img = new Image();
+	img.src = "https://komelt.github.io/gameBoyMaze/img/nintendo.svg";
+	img.onload = function () {
+		let width = 550 * 0.9;
+		let offset = 550 - (550 * 0.9)
+		console.log(c.clientWidth)
+		let height = (width * 134) / 838
+
+		let i = 0;
+		let wsInterval = setInterval(() => {
+			ctx.clearRect(0, 0, 550, 550);
+			ctx.drawImage(img, offset / 2, i, width, height);
+			if (i >= 200 + height / 2) {
+				clearInterval(wsInterval)
+				setTimeout(() => {
+					generateMaze();
+					document.getElementById("d2").style.display = "flex"
+				}, 1000)
+			}
+			if (i > (200 + height / 2) - 15 && i < (200 + height / 2))
+				audio.play();
+			i++
+		}, 14)
+	}
+
 
 }
 
 function play() {
 	clearInterval(interval)
+	gameS.pause()
+	gameS.currentTime = 0;
 	drawMaze()
 
 	document.getElementById('play').style.display = 'none';
@@ -99,10 +131,14 @@ function play() {
 
 	ctx.beginPath();
 	let x = 0;
+	gameS.play();
 	interval = setInterval(() => {
 
-		if (x == path.length - 1)
+		if (x == path.length - 1) {
 			clearInterval(interval)
+			gameS.pause()
+			gameS.currentTime = 0;
+		}
 
 		try {
 			let j = path[x][0];
@@ -116,17 +152,23 @@ function play() {
 			console.log([i, j])
 			if (i == 19) {
 				console.log("end")
+				gameS.pause()
+				gameS.currentTime = 0;
 			}
 		} catch (err) {
 			console.log("ERROR in interval")
 			console.log(err)
 			clearInterval(interval)
+			gameS.pause()
+			gameS.currentTime = 0;
 		}
 	}, 500);
 }
 
 function generateMaze() {
 	clearInterval(interval)
+	gameS.pause()
+	gameS.currentTime = 0;
 	/*start = [];
 	end = [];
 	grid = []*/
