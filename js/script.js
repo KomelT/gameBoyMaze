@@ -150,6 +150,7 @@ function play() {
 				console.log("end")
 				gameS.pause()
 				gameS.currentTime = 0;
+				theEnd()
 			}
 		} catch (err) {
 			console.log("ERROR in interval")
