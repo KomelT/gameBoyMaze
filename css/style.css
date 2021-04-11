@@ -17,11 +17,17 @@ body {
 #maze {
 	width: 22vh;
 	height: 22vh;
-	background: #6a801c;
+	background: #687d1b;
 	/*border: #6a801c 10px solid;*/
 	position: absolute;
 	top: 12.63vh;
 	margin-left: -6.5vh;
+}
+
+@-moz-document url-prefix() {
+	#maze{
+		margin-left: -13.2vh;
+	}
 }
 
 img {

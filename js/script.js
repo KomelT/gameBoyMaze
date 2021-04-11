@@ -20,12 +20,42 @@ var grid;
 let start = []
 let end = []
 let interval;
+let blockS = 27.3;
 
 var c = document.getElementById('maze');
 var ctx = c.getContext('2d');
 ctx.beginPath();
 
-generateMaze();
+//generateMaze();
+
+welcomeScreen()
+
+function welcomeScreen() {
+	var audio = new Audio('../sound/gameboy_startup.mp3');
+	var img = new Image();
+	img.src = "../img/nintendo.svg";
+	img.onload = function () {
+		let width = 550 * 0.9;
+		let offset = 550 - (550 * 0.9)
+		console.log(c.clientWidth)
+		let height = (width * 134) / 838
+
+		let i = 0;
+		let wsInterval = setInterval(() => {
+			ctx.clearRect(0, 0, 550, 550);
+			ctx.drawImage(img, offset / 2, i, width, height);
+			if (i >= 200 + height / 2) {
+				clearInterval(wsInterval)
+				setTimeout(() => {
+					generateMaze();
+				}, 1000)
+			}
+			if (i > (200 + height / 2) - 15 && i < (200 + height / 2))
+				audio.play();
+			i++
+		}, 14)
+	}
+}
 
 function play() {
 	clearInterval(interval)
@@ -65,7 +95,7 @@ function play() {
 		try {
 			let j = path[x][0];
 			let i = path[x][1];
-			ctx.rect(j * 50, i * 50, 50, 50);
+			ctx.rect(j * blockS, i * blockS, blockS, blockS);
 			ctx.fillStyle = '#b9b5b2';
 			ctx.fill();
 			ctx.stroke();
@@ -83,21 +113,22 @@ function generateMaze() {
 	start = [];
 	end = [];
 	grid = []
+	let size = 20;
 
 	while (start.length == 0) {
 		start = [];
 		end = [];
 		grid = []
-		generate(11, 1, 1);
+		generate(size, 1, 1);
 
-		for (i = 0; i < 11; i++) {
+		for (i = 0; i < size; i++) {
 			if (grid[0][i] == "") {
 				start.push([i, 0]);
 			}
 
-			if (grid[10][i] == "g") {
-				end.push([i, 10]);
-				grid[10][i] = 0;
+			if (grid[size - 1][i] == "g") {
+				end.push([i, size - 1]);
+				grid[size - 1][i] = 0;
 			}
 		}
 	}
@@ -133,7 +164,7 @@ function drawMaze() {
 	for (let i = 0; i < grid.length; i++) {
 		for (let j = 0; j < grid[i].length; j++) {
 			if (grid[i][j] == 1) {
-				ctx.rect(j * 50, i * 50, 50, 50);
+				ctx.rect(j * blockS, i * blockS, blockS, blockS);
 				ctx.fill();
 				ctx.stroke();
 			}
