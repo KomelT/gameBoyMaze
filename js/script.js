@@ -65,7 +65,7 @@ function theEnd() {
 	ctx.clearRect(0, 0, 550, 550);
 
 	var img = new Image();
-	img.src = "https://komelt.github.io/gameBoyMaze/img/nintendo.svg";
+	img.src = "https://komelt.github.io/gameBoyMaze/img/the_end.svg";
 	img.onload = function () {
 		let width = 550 * 0.9;
 		let offset = 550 - (550 * 0.9)
@@ -74,17 +74,13 @@ function theEnd() {
 
 		let i = 0;
 		let wsInterval = setInterval(() => {
+			audio.play();
 			ctx.clearRect(0, 0, 550, 550);
 			ctx.drawImage(img, offset / 2, i, width, height);
 			if (i >= 200 + height / 2) {
 				clearInterval(wsInterval)
-				setTimeout(() => {
-					generateMaze();
-					document.getElementById("d2").style.display = "flex"
-				}, 1000)
 			}
-			if (i > (200 + height / 2) - 15 && i < (200 + height / 2))
-				audio.play();
+
 			i++
 		}, 14)
 	}
