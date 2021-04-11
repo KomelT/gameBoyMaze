@@ -74,7 +74,7 @@ function theEnd() {
 
 		let i = 0;
 		let wsInterval = setInterval(() => {
-			audio.play();
+			theEnd.play();
 			ctx.clearRect(0, 0, 550, 550);
 			ctx.drawImage(img, offset / 2, i, width, height);
 			if (i >= 200 + height / 2) {
