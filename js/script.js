@@ -31,9 +31,9 @@ ctx.beginPath();
 welcomeScreen()
 
 function welcomeScreen() {
-	var audio = new Audio("url(https://komelt.github.io/gameBoyMaze/sound/gameboy_startup.mp3)");
+	var audio = new Audio("https://komelt.github.io/gameBoyMaze/sound/gameboy_startup.mp3");
 	var img = new Image();
-	img.src = "url(https://komelt.github.io/gameBoyMaze/img/nintendo.svg)";
+	img.src = "https://komelt.github.io/gameBoyMaze/img/nintendo.svg";
 	img.onload = function () {
 		let width = 550 * 0.9;
 		let offset = 550 - (550 * 0.9)
