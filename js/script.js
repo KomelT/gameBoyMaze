@@ -31,7 +31,7 @@ ctx.beginPath();
 welcomeScreen()
 
 function welcomeScreen() {
-	var audio = new Audio('../sound/gameboy_startup.mp3');
+	var audio = new Audio('https://raw.githubusercontent.com/KomelT/gameBoyMaze/main/sound/gameboy_startup.mp3');
 	var img = new Image();
 	img.src = "../img/nintendo.svg";
 	img.onload = function () {
