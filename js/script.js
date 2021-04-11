@@ -48,6 +48,7 @@ function welcomeScreen() {
 				clearInterval(wsInterval)
 				setTimeout(() => {
 					generateMaze();
+					document.getElementById("d2").style.display = "flex"
 				}, 1000)
 			}
 			if (i > (200 + height / 2) - 15 && i < (200 + height / 2))
@@ -55,6 +56,10 @@ function welcomeScreen() {
 			i++
 		}, 14)
 	}
+}
+
+function theEnd() {
+
 }
 
 function play() {
@@ -81,7 +86,14 @@ function play() {
 	}
 
 	if (path.length == 0) {
-		document.getElementById("error").style.display = "flex";
+		Swal.fire({
+			title: 'Error!',
+			text: "This maze doesn't have solution!",
+			icon: 'error',
+			confirmButtonText: 'Generate new maze'
+		}).then(() => {
+			generateMaze();
+		})
 		return;
 	}
 
@@ -100,6 +112,11 @@ function play() {
 			ctx.fill();
 			ctx.stroke();
 			x++;
+
+			console.log([i, j])
+			if (i == 19) {
+				console.log("end")
+			}
 		} catch (err) {
 			console.log("ERROR in interval")
 			console.log(err)
@@ -110,15 +127,38 @@ function play() {
 
 function generateMaze() {
 	clearInterval(interval)
+	/*start = [];
+	end = [];
+	grid = []*/
+	let size = 20;
+	let path = ""
+
+	/*while (start.length == 0) {
 	start = [];
 	end = [];
 	grid = []
-	let size = 20;
+	generate(size, 1, 1);
 
-	while (start.length == 0) {
+	for (i = 0; i < size; i++) {
+		if (grid[0][i] == "") {
+			start.push([i, 0]);
+		}
+
+		if (grid[size - 1][i] == "g") {
+			end.push([i, size - 1]);
+			grid[size - 1][i] = 0;
+		}
+	}
+	}
+
+	console.log("start " + start)
+	console.log("end " + end + " ")*/
+
+	while (path.length == 0) {
 		start = [];
 		end = [];
 		grid = []
+
 		generate(size, 1, 1);
 
 		for (i = 0; i < size; i++) {
@@ -131,23 +171,36 @@ function generateMaze() {
 				grid[size - 1][i] = 0;
 			}
 		}
-	}
 
-	console.log(grid);
-
-	console.log("start " + start)
-	console.log("end " + end + " ")
-
-	for (i = 0; i < grid.length; i++) {
-		for (j = 0; j < grid[i].length; j++) {
-			if (grid[i][j] == "" || grid[i][j] == "g")
-				grid[i][j] = 0
-			else if (grid[i][j] == "w")
-				grid[i][j] = 1;
+		for (i = 0; i < grid.length; i++) {
+			for (j = 0; j < grid[i].length; j++) {
+				if (grid[i][j] == "" || grid[i][j] == "g")
+					grid[i][j] = 0
+				else if (grid[i][j] == "w")
+					grid[i][j] = 1;
+			}
 		}
+
+		var grid1 = new PF.Grid(grid);
+		var finder = new PF.AStarFinder();
+
+		for (i = 0; i < start.length; i++) {
+			console.log("Start Coordinates, " + start)
+			console.log("End Coordinates, " + end)
+			path = finder.findPath(start[i][0], start[i][1], end[0][0], end[0][1], grid1);
+			console.log(path)
+			if (path.length != 0)
+				break;
+		}
+
+		console.log(path.length)
+
+
 	}
 
-	console.log(grid)
+	console.log(path.length)
+
+	console.log("generated")
 
 	drawMaze();
 
